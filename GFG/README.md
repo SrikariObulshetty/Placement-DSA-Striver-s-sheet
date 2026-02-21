@@ -1,0 +1,1 @@
+This folder has all optimised solutions of questions that I am solving from Striver's sheet on GFG platform.
