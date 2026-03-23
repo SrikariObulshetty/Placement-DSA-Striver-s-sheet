@@ -1,0 +1,30 @@
+class Solution {
+
+
+    public static void combinations( HashMap<Integer,String>map, String digits,String temp,List<String>ans){
+        if(digits.length()==0){
+            ans.add(temp);
+            return;
+        }
+        for(int j=0;j<map.get(digits.charAt(0) - '0').length(); j++){
+            char c =map.get(digits.charAt(0) - '0').charAt(j);
+            combinations(map, digits.substring(1), temp+c,ans);
+        }
+        return;
+
+    }
+    public List<String> letterCombinations(String digits) {
+        HashMap<Integer,String>map = new HashMap<>();
+        map.put(2, "abc");
+        map.put(3, "def");
+        map.put(4, "ghi");
+        map.put(5, "jkl");
+        map.put(6, "mno");
+        map.put(7, "pqrs");
+        map.put(8, "tuv");
+        map.put(9, "wxyz");
+        List<String> ans = new ArrayList<>();
+        combinations(map, digits, "", ans);
+        return ans;   
+    }
+}
