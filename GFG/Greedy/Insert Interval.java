@@ -1,0 +1,28 @@
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        int l = intervals.length;
+        ArrayList<int[]>ans = new ArrayList<>();
+        int i=0;
+        while(i<l && intervals[i][1] < newInterval[0]){
+            ans.add(intervals[i]);
+            i=i+1;
+        }
+        //overlapping part
+        while(i<l && intervals[i][0] <= newInterval[1]){
+            newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+            newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+            i=i+1;
+        }
+        ans.add(newInterval);
+        while(i<l){
+            ans.add(intervals[i]);
+            i=i+1;
+        }
+        int s = ans.size();
+        int[][] res = new int[s][2];
+        for(int j=0;j<s;j++){
+            res[j] = ans.get(j);
+        }
+        return res; 
+    } 
+}
