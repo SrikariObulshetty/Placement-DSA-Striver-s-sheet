@@ -2,7 +2,7 @@ class Solution {
 
 
     public int uniquePaths(int m, int n) {
-         int dp[] = new int[m];
+         int dp[] = new int[n];
          for(int i=0;i<m;i++){
             int temp[] = new int[n];
             for(int j=0;j<n;j++){
@@ -10,11 +10,8 @@ class Solution {
                     temp[0] = 1;
                     continue;
                 } 
-                int up = 0;
+                int up = dp[j];
                 int left = 0;
-                if(i >= 1){
-                    up = dp[j]; 
-                }
                 if(j >= 1){
                     left = temp[j-1]; 
                 }
