@@ -7,15 +7,15 @@ class Solution {
         // }
         if(cr==r-1){ 
             return triangle.get(cr).get(cc);
-        }
+        } 
         else if(dp.get(cr).get(cc) != Long.MAX_VALUE){
             return dp.get(cr).get(cc); 
         }
-        long down = triangle.get(cr).get(cc) + triangles(triangle, r, cr+1, cc, dp);
-        long diag = triangle.get(cr).get(cc) + triangles(triangle, r, cr+1, cc+1, dp);
+        long down =  triangles(triangle, r, cr+1, cc, dp);
+        long diag =  triangles(triangle, r, cr+1, cc+1, dp);
 
-        dp.get(cr).set(cc, Math.min(down, diag));
-        return Math.min(down, diag); 
+        dp.get(cr).set(cc, triangle.get(cr).get(cc) + Math.min(down, diag));  
+        return dp.get(cr).get(cc); 
       
    }
 
@@ -24,8 +24,8 @@ class Solution {
          int r = triangle.size();
          List<List<Long>> dp = new ArrayList<>();
          for(int i=0;i<r;i++){
-            List<Long> list = new ArrayList<>(Collections.nCopies(triangle.get(i).size(),  Long.MAX_VALUE) ); 
-            dp.add(list);
+            List<Long> list = new ArrayList<>(Collections.nCopies(i+1,  Long.MAX_VALUE) ); 
+            dp.add(list); 
          }
 
          return (int)triangles(triangle, r, 0, 0, dp);        
